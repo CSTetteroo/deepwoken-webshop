@@ -12,7 +12,11 @@ return [
     | the usual Laravel view path has already been registered for you.
     |
     */
-
+    'engines' => [
+        'php' => 'php',
+        'blade' => 'Illuminate\View\Engines\CompilerEngine',
+    ],
+    
     'paths' => [
         resource_path('views'),
     ],
