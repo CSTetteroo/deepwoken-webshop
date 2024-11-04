@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use app\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +22,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
+    Route::resource('products', ProductController::class);
+    # creates these routes:
+    # GET /dashboard/products
+    # GET /dashboard/products/create
+    # POST /dashboard/products
+    # GET /dashboard/products/{id}
+    # GET /dashboard/products/{id}/edit
+    # PUT /dashboard/products/{id}
+    # DELETE /dashboard/products/{id}
+});

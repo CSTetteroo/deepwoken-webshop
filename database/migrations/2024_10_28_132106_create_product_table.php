@@ -17,11 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('price')->nullable(true)->default(NULL);
             $table->integer('amount_available')->default(0);
-            $table->boolean('is_relic')->default(false);
-            $table->boolean('is_weapon')->default(false);
-            $table->boolean('is_consumable')->default(false);
-            $table->boolean('is_equipment')->default(false);
-            $table->boolean('is_misc')->default(false);
+            $table->unsignedBigInteger('type')->default(5);
             $table->string('image');
             $table->timestamps();
         });
