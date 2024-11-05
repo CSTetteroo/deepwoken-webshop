@@ -1,3 +1,4 @@
+@extends('layouts.app')
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -23,7 +24,7 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/dashboard/products/">Home</a>
+                <a class="navbar-brand btn btn-primary" href="/dashboard/products/">Home</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -31,13 +32,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="/dashboard/products/">products</a>
+                            <a class="nav-link btn btn-primary" href="/dashboard/products/">Our Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/dashboard/products/create">Create product</a>
+                            <a class="nav-link btn btn-primary"  href="/dashboard/products/create">Add Product</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/dashboard/cart">Cart</a>
+                            <a class="nav-link btn btn-primary" href="/dashboard/cart">Cart</a>
                         </li>
                     </ul>
                 </div>

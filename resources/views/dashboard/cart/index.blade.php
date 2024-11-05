@@ -1,5 +1,4 @@
-<!-- resources/views/cart/index.blade.php -->
-@extends('layouts.app')
+
 @extends('layouts.base')
 
 @section('content')
