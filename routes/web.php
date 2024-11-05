@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use app\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +16,7 @@ use app\Http\Controllers\ProductController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard/products/index');
 });
 
 Auth::routes();
