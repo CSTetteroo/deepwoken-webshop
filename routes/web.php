@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -15,9 +16,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard/products/index');
-});
+Route::get('/', [App\Http\Controllers\HomePageController::class, 'index']);
+
+
 
 Auth::routes();
 
@@ -33,4 +34,16 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
     # GET /dashboard/products/{id}/edit
     # PUT /dashboard/products/{id}
     # DELETE /dashboard/products/{id}
+});
+
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
+    Route::resource('cart', CartController::class);
+    # creates these routes:
+    # GET /dashboard/cart
+    # GET /dashboard/cart/create
+    # POST /dashboard/cart
+    # GET /dashboard/cart/{id}
+    # GET /dashboard/cart/{id}/edit
+    # PUT /dashboard/cart/{id}
+    # DELETE /dashboard/cart/{id}
 });

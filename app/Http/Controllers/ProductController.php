@@ -22,7 +22,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $types = DB::table('type')->get();
+        $types = DB::table('types')->get();
         return view('dashboard/products/create', compact('types'));
     }
     /**

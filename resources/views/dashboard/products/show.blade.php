@@ -1,11 +1,11 @@
+@extends('layouts.app')
 @extends('layouts.base')
 
-@section('main-content')
-    <h1>Products</h1>
+@section('content')
     @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
     @endif
     <table class="table">
         <thead>
@@ -16,6 +16,7 @@
                 <th scope="col">Stock</th>
                 <th scope="col">Type</th>
                 <th scope="col">Image</th>
+                <th scope="col">Buy</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -24,9 +25,17 @@
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->description }}</td>
                 <td>{{ $product->price }}</td>
-                <td>{{ $product->stock }}</td>
+                <td>{{ $product->amount_available }}</td>
                 <td>{{ $product->type }}</td>
-                <td>{{ $product->image }}</td>
+                <td><img class="product_logo" src="{{ $product->image }}" alt="{{ $product->name }}"></td>
+                <td>
+                    <form action="{{ route('cart.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="number" name="quantity" min="1" max="{{ $product->stock }}" value="1" class="form-control mb-2">
+                        <button type="submit" class="btn btn-success">Add to Cart</button>
+                    </form>
+                </td>
                 <td>
                     <a href="/dashboard/products/{{ $product->id }}/edit" class="btn btn-primary">Edit</a>
                     <form action="/dashboard/products/{{ $product->id }}" method="POST" style="display: inline;">
@@ -35,5 +44,7 @@
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </td>
+            </tr>
         </tbody>
+    </table>
 @endsection

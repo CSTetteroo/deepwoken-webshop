@@ -13,7 +13,7 @@ class add_dummy_products extends Seeder
      */
     public function run(): void
     {
-        DB::table('type')->insert([
+        DB::table('types')->insert([
             ['type' => 'Weapon'],
             ['type' => 'Equipment'],
             ['type' => 'Relic'],

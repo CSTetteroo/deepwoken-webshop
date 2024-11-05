@@ -36,6 +36,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/dashboard/products/create">Create product</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard/cart">Cart</a>
+                        </li>
                     </ul>
                 </div>
             </div>
