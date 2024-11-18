@@ -1,49 +1,28 @@
 <?php
-
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
+// Public routes
 Route::get('/', [App\Http\Controllers\HomePageController::class, 'index']);
-
-
-
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Dashboard routes for authenticated users
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
-    Route::resource('products', ProductController::class);
-    # creates these routes:
-    # GET /dashboard/products
-    # GET /dashboard/products/create
-    # POST /dashboard/products
-    # GET /dashboard/products/{id}
-    # GET /dashboard/products/{id}/edit
-    # PUT /dashboard/products/{id}
-    # DELETE /dashboard/products/{id}
+    // Product routes
+    Route::get('products', [ProductController::class, 'index'])->name('products.index');
+    Route::get('products/{product}', [ProductController::class, 'show'])->name('products.show');
+
+    // Cart routes
+    Route::resource('cart', CartController::class);
 });
 
-Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
-    Route::resource('cart', CartController::class);
-    # creates these routes:
-    # GET /dashboard/cart
-    # GET /dashboard/cart/create
-    # POST /dashboard/cart
-    # GET /dashboard/cart/{id}
-    # GET /dashboard/cart/{id}/edit
-    # PUT /dashboard/cart/{id}
-    # DELETE /dashboard/cart/{id}
+// Admin routes for product management
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'isAdmin']], function() {
+    Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('products', [ProductController::class, 'store'])->name('products.store');
+    Route::get('products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
+    Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 });

@@ -60,7 +60,7 @@ class ProductController extends Controller
     {
         // edit specific product
         $product = Product::findOrFail($id);
-        $types = DB::table('type')->get();
+        $types = DB::table('types')->get();
         return view('dashboard/products/edit', compact('product', 'types'));
     }
 

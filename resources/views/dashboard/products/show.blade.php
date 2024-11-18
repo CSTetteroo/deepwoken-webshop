@@ -32,9 +32,12 @@
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <input type="number" name="quantity" min="1" max="{{ $product->stock }}" value="1" class="form-control mb-2">
+                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                         <button type="submit" class="btn btn-success">Add to Cart</button>
                     </form>
                 </td>
+                only if admin:
+
                 <td>
                     <a href="/dashboard/products/{{ $product->id }}/edit" class="btn btn-primary">Edit</a>
                     <form action="/dashboard/products/{{ $product->id }}" method="POST" style="display: inline;">
@@ -43,6 +46,8 @@
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </td>
+
+
             </tr>
         </tbody>
     </table>

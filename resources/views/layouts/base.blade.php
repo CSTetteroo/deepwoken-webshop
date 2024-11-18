@@ -35,7 +35,7 @@
                             <a class="nav-link btn btn-primary" href="/dashboard/products/">Our Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-primary"  href="/dashboard/products/create">Add Product</a>
+                            <a class="nav-link btn btn-primary" href="{{ route('products.create') }}">Add Product</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-primary" href="/dashboard/cart">Cart</a>

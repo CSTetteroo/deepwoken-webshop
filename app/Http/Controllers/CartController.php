@@ -37,7 +37,7 @@ class CartController extends Controller
         $cart_item->quantity = $request->quantity;
         $cart_item->save();
 
-        return redirect()->route('dashboard.cart.index')->with('success', 'Product added to cart successfully.');
+        return redirect()->route('cart.index')->with('success', 'Product added to cart successfully.');
     }
 
     /**
